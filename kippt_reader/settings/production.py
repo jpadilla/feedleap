@@ -1,4 +1,4 @@
-import environ
+from os import environ
 
 from .base import *
 
