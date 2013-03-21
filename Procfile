@@ -1,0 +1,1 @@
+web: python manage.py runserver --settings=kippt_reader.settings.production

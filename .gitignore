@@ -1,0 +1,36 @@
+# Python bytecode:
+*.py[co]
+
+# Packaging files:
+*.egg*
+
+# Editor temp files:
+*.swp
+*~
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.vi
+*.sass-cache
+
+# SQLite3 database files:
+*.sqlite3
+
+# Logs:
+*.log
+
+# Foreman environment vars
+.env
+Procfile.local
+
+# OS or Editor folders
+.DS_Store
+.cache
+.project
+.settings
+.tmproj
+nbproject
+Thumbs.db

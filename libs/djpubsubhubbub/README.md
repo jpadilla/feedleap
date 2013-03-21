@@ -1,0 +1,67 @@
+========
+ README
+========
+
+This is a mirror of the original app (see ORIGINAL README below.)
+
+The small changes I made were just to integrate custom header
+support into the app. This is needed to interface with the
+SuperFeedr.com hub.
+
+Updated to work cleanly with Django 1.5.
+
+
+============
+INSTRUCTIONS
+============
+
+Please see:
+
+https://bitbucket.org/petersanchez/djpubsubhubbub/wiki/Installation
+
+For SuperFeedr tutorial, please see:
+
+https://bitbucket.org/petersanchez/djpubsubhubbub/wiki/SuperFeedr_Tutorial
+
+
+============
+DEPENDENCIES
+============
+
+Requires the django-easyconfig and feedparser packages.
+
+$ pip install django-easyconfig
+$ pip install feedparser
+
+# Note, if you install djpubsubhubbub from pip yourself,
+# it should handle the dependencies for you.
+
+
+============
+REQUIREMENTS
+============
+
+This app assumes you are running at least Python 2.4
+and Django 1.2
+
+
+=======
+AUTHORS
+=======
+
+The good people at Participatory Culture
+Peter Sanchez - peter@netlandish.com
+Martin Bachwerk - martin@webscio.net
+
+
+===============
+ORIGINAL README
+===============
+
+This is a Django PubSubHubBub module.
+
+Code is at:
+
+    https://git.participatoryculture.org/djpubsubhubbub
+
+License information is in the LICENSE file.
