@@ -15,4 +15,4 @@ class SubHubConfig(object):
         return headers
 
     def get_default_callback_host(self, feed_url, hub_url):
-        return 'www.your-project-domain.com'
+        return settings.DOMAIN

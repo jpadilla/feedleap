@@ -93,6 +93,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Project specifics
+
+DOMAIN = 'kippt-reader.herokaupp.com'
+
 # SuperFeedr
 SUPERFEEDR_HUB = 'https://superfeedr.com/hubbub'
 SUPERFEEDR_USER = 'jpadilla'
