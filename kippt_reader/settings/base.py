@@ -99,7 +99,7 @@ DOMAIN = 'kippt-reader.herokaupp.com'
 # SuperFeedr
 SUPERFEEDR_HUB = 'https://superfeedr.com/hubbub'
 SUPERFEEDR_USER = 'jpadilla'
-SUPERFEEDR_PASS = 'quo-pu-spa-hir'
+SUPERFEEDR_PASS = 'superfeedrkipptreader'
 
 # djpubsubhubbub
 PUBSUBHUBBUB_CONFIG = 'kippt_reader.config.SubHubConfig'
