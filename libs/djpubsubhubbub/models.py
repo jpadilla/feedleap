@@ -99,7 +99,7 @@ class SubscriptionManager(models.Manager):
                         yield key, value
 
         encoded_data = urlencode(list(data_generator()))
-        headers.update({'Content-Length': (len(encoded_data) + 2)})
+        # headers.update({'Content-Length': (len(encoded_data) + 2)})
         if debug:
             print 'Sending:\n%s\n%s\n%s\n\n' % (url, encoded_data, headers)
 
