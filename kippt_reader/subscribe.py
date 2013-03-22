@@ -5,5 +5,4 @@ sub = Subscription.objects.subscribe(
     topic='http://push-pub.appspot.com/feed',
     hub=settings.SUPERFEEDR_HUB,
     debug=True,
-    verify='async'
 )

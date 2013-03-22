@@ -4,6 +4,8 @@ from urllib import urlencode
 from datetime import timedelta
 from hashlib import sha1
 
+import requests
+
 from django.db import models
 from django.conf import settings
 from django.core.urlresolvers import reverse, NoReverseMatch
@@ -60,15 +62,10 @@ class SubscriptionManager(models.Manager):
             'lease_seconds': lease_seconds,
         }, headers, debug)
 
-        info = response.info()
-        info.status = response.code
-        if debug:
-            print 'Info:\n%s\n\n' % str(info)
-
-        if info.status not in [204, 202]:
+        if response.status_code not in [204, 202]:
             # 204 is sync verification
             # 202 is async verification
-            error = response.read()
+            error = response.text
             raise urllib2.URLError(
                 'error with mode "%s" to %s on %s:\n%s' %
                 (mode, topic, hub, error)
@@ -89,22 +86,24 @@ class SubscriptionManager(models.Manager):
                 return link['href']
 
     def _send_request(self, url, data, headers={}, debug=False):
-        def data_generator():
-            for key, value in data.items():
-                key = 'hub.' + key
-                if isinstance(value, (basestring, int)):
-                    yield key, str(value)
-                else:
-                    for subvalue in value:
-                        yield key, value
+        _data = {}
 
-        encoded_data = urlencode(list(data_generator()))
-        # headers.update({'Content-Length': (len(encoded_data) + 2)})
-        if debug:
-            print 'Sending:\n%s\n%s\n%s\n\n' % (url, encoded_data, headers)
+        for key, value in data.items():
+            key = 'hub.' + key
+            if isinstance(value, (basestring, int)):
+                _data[key] = str(value)
+            else:
+                for subvalue in value:
+                    _data[key] = value
 
-        req = urllib2.Request(url, encoded_data, headers=headers)
-        return urllib2.urlopen(req)
+        r = requests.post(
+            url,
+            data=_data,
+            headers=headers,
+            auth=(settings.SUPERFEEDR_USER, settings.SUPERFEEDR_PASS)
+        )
+
+        return r
 
 
 class Subscription(models.Model):
