@@ -1,6 +1,5 @@
 import urllib2
 import feedparser
-from urllib import urlencode
 from datetime import timedelta
 from hashlib import sha1
 

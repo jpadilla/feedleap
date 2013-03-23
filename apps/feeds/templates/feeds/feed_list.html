@@ -1,0 +1,6 @@
+<ul>
+    {% for feed in object_list %}
+    <li>{{ feed }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'feeds_create' %}">Add a new feed</a>

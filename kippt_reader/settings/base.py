@@ -44,7 +44,8 @@ INSTALLED_APPS = (
 
     'libs.djpubsubhubbub',
 
-    'apps.core',
+    'apps.auth',
+    'apps.feeds',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -92,32 +93,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Logging
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        }
-    },
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'propagate': True,
-            'level': 'INFO',
-        }
-    }
-}
-
 # Project specifics
+
+AUTH_USER_MODEL = 'auth.KipptUser'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'apps.auth.backends.KipptUserBackend',
+)
 
 DOMAIN = 'kippt-reader.herokuapp.com'
 
