@@ -26,6 +26,7 @@ class RegisterView(CreateView):
 class SetupView(LoginRequiredMixin, UpdateView):
     model = KipptUser
     form_class = KipptUserSetupForm
+    success_url = reverse_lazy('feeds_list')
 
     def get_object(self):
         return self.request.user
