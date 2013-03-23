@@ -119,7 +119,7 @@ LOGGING = {
 
 # Project specifics
 
-DOMAIN = 'kippt-reader.herokaupp.com'
+DOMAIN = 'kippt-reader.herokuapp.com'
 
 # SuperFeedr
 SUPERFEEDR_HUB = 'https://superfeedr.com/hubbub'
