@@ -1,7 +1,5 @@
-import logging
 import urllib
 import feedparser
-from datetime import datetime
 
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404
@@ -10,9 +8,6 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 from models import Subscription, DEFAULT_LEASE_SECONDS
 from signals import verified, updated, subscription_needs_update
-
-
-logger = logging.getLogger(__name__)
 
 
 @csrf_exempt
@@ -27,12 +22,6 @@ def callback(request, pk):
                 DEFAULT_LEASE_SECONDS,
             )
             verify_token = request.GET.get('hub.verify_token', '')
-
-            logger.info('mode: %s' % mode)
-            logger.info('topic: %s' % topic)
-            logger.info('challenge: %s' % challenge)
-            logger.info('lease_seconds: %s' % lease_seconds)
-            logger.info('verify_token: %s' % verify_token)
         except MultiValueDictKeyError:
             # Raise 404 instead of 500 error
             raise Http404
@@ -43,7 +32,6 @@ def callback(request, pk):
                 topic=topic,
                 verify_token=verify_token,
             )
-            logger.info('trying to get Subscription')
         except Subscription.DoesNotExist:
             # XXX Hack. Hubs may re-encode already encoded
             # data sent during the initial subscription request.
@@ -55,16 +43,13 @@ def callback(request, pk):
                     topic=topic,
                     verify_token=verify_token,
                 )
-                logger.info('trying to get Subscription with topic: %s' % topic)
             except Subscription.DoesNotExist:
                 raise Http404
 
         if mode == 'subscribe':
-            logger.info('Subscribe mode')
             if not verify_token.startswith('subscribe'):
                 raise Http404
 
-            logger.info('verifying subscription')
             subscription.verified = True
             subscription.is_subscribed = True
             subscription.set_expiration(int(lease_seconds))
@@ -77,14 +62,13 @@ def callback(request, pk):
             subscription.is_subscribed = False
             subscription.set_expiration(int(lease_seconds))
 
-        logger.info('Returning challenge')
         return HttpResponse(challenge, content_type='text/plain')
     elif request.method == 'POST':
         subscription = get_object_or_404(Subscription, pk=pk)
         parsed = feedparser.parse(
             getattr(request, 'body', request.raw_post_data),
         )
-        if parsed.feed.links: # single notification
+        if parsed.feed.links:  # single notification
             hub_url = subscription.hub
             self_url = subscription.topic
             for link in parsed.feed.links:
