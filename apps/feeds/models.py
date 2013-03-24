@@ -31,8 +31,11 @@ class FeedEntry(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name_plural = 'feed entries'
+
     def __unicode__(self):
-        return self.link
+        return '{} - {}'.format(self.title, self.link)
 
     def add_to_kipt(self):
         if not self.added_to_kippt:
