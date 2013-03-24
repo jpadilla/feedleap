@@ -1,6 +1,6 @@
 from libs.djpubsubhubbub.signals import updated
 
-from .models import Feed
+from .models import Feed, FeedEntry
 
 
 def update_handler(sender, update, **kwargs):
@@ -9,23 +9,17 @@ def update_handler(sender, update, **kwargs):
 
     """
 
-    print sender.topic
-
-    users = []
     feeds = Feed.objects.filter(feed_url=sender.topic)
 
     for feed in feeds:
-        if feed.created_by not in users:
-            users.append(feed.created_by)
-
-    for user in users:
-        kippt = user.kippt_client()
-
         for entry in update.entries:
-            title = entry['title']
-            summary = entry['summary']
-            link = entry['link']
+            feed_entry = FeedEntry.objects.create(
+                title=entry['title'],
+                summary=entry['summary'],
+                link=entry['link'],
+                feed=feed
+            )
 
-            kippt.addClip(link, user.list_id, title=title, notes=summary)
+            feed_entry.add_to_kipt()
 
 updated.connect(update_handler, dispatch_uid='superfeedr')
