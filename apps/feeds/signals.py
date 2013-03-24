@@ -6,6 +6,7 @@ def update_handler(sender, update, **kwargs):
     Process new content being provided from SuperFeedr
 
     """
+    print sender
     for entry in update.entries:
         print entry
 
