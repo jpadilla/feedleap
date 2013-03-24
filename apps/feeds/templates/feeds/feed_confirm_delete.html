@@ -1,7 +1,5 @@
 <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    Are you sure you want to unsubscribe from this feed?
     <input type="submit" value="Submit">
 </form>
-
-<a href="{% url 'auth_login' %}">Login</a>

@@ -1,6 +1,8 @@
 <ul>
     {% for feed in object_list %}
-    <li>{{ feed }}</li>
+    <li>{{ feed }} <a href="{% url 'feeds_delete' feed.pk %}">Unsubscribe</a></li>
     {% endfor %}
 </ul>
 <a href="{% url 'feeds_create' %}">Add a new feed</a>
+<a href="{% url 'auth_setup' %}">Setup</a>
+<a href="{% url 'auth_logout' %}">Logout</a>

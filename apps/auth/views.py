@@ -1,7 +1,6 @@
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse_lazy
-
 
 from braces.views import LoginRequiredMixin
 

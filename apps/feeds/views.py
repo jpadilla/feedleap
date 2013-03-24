@@ -1,4 +1,4 @@
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
 from braces.views import LoginRequiredMixin
@@ -23,3 +23,14 @@ class FeedListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Feed.objects.filter(created_by=self.request.user)
+
+
+class FeedDeleteView(LoginRequiredMixin, DeleteView):
+    model = Feed
+    success_url = reverse_lazy('feeds_list')
+
+    def get_object(self, queryset=None):
+        obj = super(FeedDeleteView, self).get_object()
+
+        if obj.created_by == self.request.user:
+            return obj

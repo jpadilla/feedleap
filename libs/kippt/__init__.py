@@ -51,7 +51,7 @@ class Client:
             data = r.json()
             return data['meta'], data['objects']
         else:
-            return False, False
+            return False, []
 
     # Get a list.
     # Example:
