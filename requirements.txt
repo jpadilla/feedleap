@@ -5,6 +5,7 @@ dj-database-url==0.2.1
 django-braces==1.0.0
 django-easyconfig==0.1
 django-extensions==1.1.1
+django-secure==0.1.2
 django-widget-tweaks==1.2
 djpubsubhubbub==0.7
 feedparser==5.1.3
