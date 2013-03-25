@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from libs import kippt
+from libs.kippt import Kippt
 
 
 class KipptUser(AbstractUser):
@@ -16,4 +16,4 @@ class KipptUser(AbstractUser):
         return self.username
 
     def kippt_client(self):
-        return kippt.Client(self.username, self.api_token)
+        return Kippt(self.username, api_token=self.api_token)

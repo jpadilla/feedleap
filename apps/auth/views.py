@@ -1,25 +1,38 @@
 from django.views.generic import CreateView, UpdateView
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse_lazy
+from django.shortcuts import redirect
 
 from braces.views import LoginRequiredMixin
 
 from .models import KipptUser
-from .forms import KipptUserCreationForm, KipptUserSetupForm
+from .forms import KipptUserConnectForm, KipptUserSetupForm
 
 
-class RegisterView(CreateView):
+class ConnectView(CreateView):
     model = KipptUser
-    form_class = KipptUserCreationForm
+    form_class = KipptUserConnectForm
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated():
+            return redirect(reverse_lazy('feeds_list'))
+
+        return super(ConnectView, self).get(request, *args, **kwargs)
 
     def form_valid(self, form):
-        response = super(RegisterView, self).form_valid(form)
-        user = authenticate(username=form.cleaned_data['username'],
-                            api_token=form.cleaned_data['api_token'])
+        obj, created = form.save()
+        self.object = obj
+        user = authenticate(username=obj.username, api_token=obj.api_token)
+
         if user is not None:
             login(self.request, user)
 
-        return response
+        if created:
+            redirect_to = reverse_lazy('auth_setup')
+        else:
+            redirect_to = reverse_lazy('feeds_list')
+
+        return redirect(redirect_to)
 
 
 class SetupView(LoginRequiredMixin, UpdateView):
@@ -29,6 +42,3 @@ class SetupView(LoginRequiredMixin, UpdateView):
 
     def get_object(self):
         return self.request.user
-
-    def get_success_url(self):
-        return reverse_lazy('auth_setup')
