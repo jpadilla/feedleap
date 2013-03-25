@@ -1,1 +1,1 @@
-web: python manage.py runserver 0.0.0.0:$PORT --noreload --settings=kippt_reader.settings.production
+web: python manage.py run_gunicorn -b "0.0.0.0:$PORT" -w 3 --settings=kippt_reader.settings.production
