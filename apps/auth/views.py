@@ -21,7 +21,6 @@ class ConnectView(CreateView):
 
     def form_valid(self, form):
         obj, created = form.save()
-        self.object = obj
         user = authenticate(username=obj.username, api_token=obj.api_token)
 
         if user is not None:

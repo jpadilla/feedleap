@@ -1,21 +1,10 @@
-from django.views.generic import ListView, CreateView, DeleteView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from django.core.urlresolvers import reverse_lazy
-
+from django.shortcuts import redirect
 from braces.views import LoginRequiredMixin
 
 from .models import Feed
 from .forms import FeedCreateForm
-
-
-class FeedCreateView(LoginRequiredMixin, CreateView):
-    model = Feed
-    form_class = FeedCreateForm
-    success_url = reverse_lazy('feeds_list')
-
-    def form_valid(self, form):
-        obj = form.save(commit=False)
-        obj.created_by = self.request.user
-        return super(FeedCreateView, self).form_valid(form)
 
 
 class FeedListView(LoginRequiredMixin, ListView):
@@ -23,6 +12,47 @@ class FeedListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Feed.objects.filter(created_by=self.request.user)
+
+
+class FeedCreateView(LoginRequiredMixin, CreateView):
+    model = Feed
+    form_class = FeedCreateForm
+    success_url = reverse_lazy('feeds_list')
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(FeedCreateView, self).get_form_kwargs(**kwargs)
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.created_by = self.request.user
+        return super(FeedCreateView, self).form_valid(form)
+
+
+class FeedUpdateView(LoginRequiredMixin, UpdateView):
+    model = Feed
+    form_class = FeedCreateForm
+    success_url = '/feeds/edit/%(id)s/'
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(FeedUpdateView, self).get_form_kwargs(**kwargs)
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def get_object(self, queryset=None):
+        obj = super(FeedUpdateView, self).get_object()
+
+        if obj.created_by == self.request.user:
+            return obj
+
+    def get(self, request, *args, **kwargs):
+        response = super(FeedUpdateView, self).get(request, *args, **kwargs)
+
+        if not self.object:
+            return redirect(reverse_lazy('feeds_list'))
+
+        return response
 
 
 class FeedDeleteView(LoginRequiredMixin, DeleteView):

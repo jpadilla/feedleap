@@ -23,8 +23,8 @@ class KipptUserConnectForm(forms.ModelForm):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
 
-        kippt_client = Kippt(username, password=password)
-        user = kippt_client.account()
+        kippt = Kippt(username, password=password)
+        user = kippt.account()
 
         if 'message' in user:
             raise forms.ValidationError(user['message'])
@@ -52,8 +52,8 @@ class KipptUserSetupForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(KipptUserSetupForm, self).__init__(*args, **kwargs)
 
-        kippt_client = self.instance.kippt_client()
-        meta, lists = kippt_client.lists()
+        kippt = self.instance.kippt_client()
+        meta, lists = kippt.lists()
 
         LIST_CHOICES = [('', 'Choose a list to store feed items')]
 

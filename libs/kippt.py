@@ -126,19 +126,21 @@ class Kippt(object):
             return data['meta'], data['objects']
 
     class Clips(ApiResource):
-        def create(self, url, list_id, title=None, starred=None, notes=None):
+        def create(self, url, list_id=None, title=None, starred=None, notes=None):
             clip_data = {
                 'url': url,
-                'list': '/api/lists/{}'.format(list_id)
             }
 
-            if not title is None:
+            if list_id:
+                clip_data['list'] = '/api/lists/{}'.format(list_id)
+
+            if title:
                 clip_data['title'] = title
 
-            if not starred is None:
+            if starred:
                 clip_data['is_starred'] = starred
 
-            if not notes is None:
+            if notes:
                 clip_data['notes'] = notes
 
             return super(Kippt.Clips, self).create(params=clip_data)

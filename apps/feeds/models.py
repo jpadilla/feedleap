@@ -7,6 +7,7 @@ from django.conf import settings
 
 class Feed(models.Model):
     feed_url = models.URLField()
+    list_id = models.IntegerField(blank=True, null=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL)
 
     date_created = models.DateTimeField(auto_now_add=True)
@@ -42,9 +43,14 @@ class FeedEntry(models.Model):
             user = self.feed.created_by
             kippt = user.kippt_client()
 
-            kippt.addClip(
+            if self.feed.list_id:
+                list_id = self.feed.list_id
+            else:
+                list_id = user.list_id
+
+            kippt.clips.create(
                 self.link,
-                user.list_id,
+                list_id,
                 title=self.title,
                 notes=self.summary
             )

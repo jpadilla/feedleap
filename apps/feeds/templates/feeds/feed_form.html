@@ -3,3 +3,7 @@
     {{ form.as_p }}
     <input type="submit" value="Submit">
 </form>
+<a href="{% url 'feeds_list' %}">Feeds</a>
+{% if feed %}
+    <a href="{% url 'feeds_delete' feed.pk %}">Unsubscribe</a>
+{% endif %}
