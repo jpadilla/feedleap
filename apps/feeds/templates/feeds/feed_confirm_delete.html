@@ -1,5 +1,26 @@
-<form method="POST">
-    {% csrf_token %}
-    Are you sure you want to unsubscribe from this feed?
-    <input type="submit" value="Submit">
-</form>
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block body %}
+<div class="container">
+    {% include "navbar.html" %}
+    <div class="row">
+        <div class="span6">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-wrapper palette-clouds">
+
+                    <div class="control-group error">
+                        <p>Are you sure you want to unsubscribe from this feed?</p>
+                    </div>
+
+                    <div class="control-group">
+                        <input type="submit" class="btn btn-large btn-danger" value="Submit">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

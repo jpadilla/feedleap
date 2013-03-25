@@ -1,9 +1,50 @@
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
-</form>
-<a href="{% url 'feeds_list' %}">Feeds</a>
-{% if feed %}
-    <a href="{% url 'feeds_delete' feed.pk %}">Unsubscribe</a>
-{% endif %}
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block body %}
+<div class="container">
+    {% include "navbar.html" %}
+    <div class="row">
+        <div class="span6">
+
+            {% if feed %}
+                <h1>Edit feed</h1>
+            {% else %}
+                <h1>New feed</h1>
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-wrapper palette-clouds">
+
+                    {% if form.errors %}
+                    <div class="control-group error">
+                        {% for field, error in form.errors.items %}
+                            <p>{{ error|striptags }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div class="control-group {% if form.feed_url.errors %}error{% endif %}">
+                        <label for="{{ form.feed_url.auto_id }}">{{ form.feed_url.label }}</label>
+                        {{ form.feed_url|add_class:"span5"|attr:"placeholder:Enter the RSS feed URL"}}
+                    </div>
+
+                    <div class="control-group {% if form.list_id.errors %}error{% endif %}">
+                        <label for="{{ form.list_id.auto_id }}">{{ form.list_id.label }}</label>
+                        {{ form.list_id|add_class:"span5" }}
+                    </div>
+
+                    <div class="control-group">
+                        <input type="submit" class="btn btn-large btn-primary" value="Submit">
+                        {% if feed %}
+                            <a class="unsubscribe" href="{% url 'feeds_delete' feed.pk %}">Unsubscribe?</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,8 +1,48 @@
-<ul>
-    {% for feed in object_list %}
-    <li><a href="{% url 'feeds_update' feed.pk %}">{{ feed }}</a></li>
-    {% endfor %}
-</ul>
-<a href="{% url 'feeds_create' %}">Add a new feed</a>
-<a href="{% url 'auth_setup' %}">Setup</a>
-<a href="{% url 'auth_logout' %}">Logout</a>
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    {% include "navbar.html" %}
+    <div class="row">
+        <div class="span12">
+            <a class="add-feed" href="{% url 'feeds_create' %}">
+                <span class="fui-plus-16"></span> Add a new feed
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            {% if object_list %}
+                <table class="table">
+                  <thead>
+                      <tr>
+                          <th>Feed URL</th>
+                          <th class="action">Edit</th>
+                          <th class="action">Unsubscribe</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for feed in object_list %}
+                      <tr>
+                          <td>{{ feed }}</td>
+                          <td class="action">
+                              <a href="{% url 'feeds_update' feed.pk %}">
+                                  <span class="fui-new-16"></span>
+                              </a>
+                          </td>
+                          <td class="action">
+                              <a href="{% url 'feeds_delete' feed.pk %}">
+                                  <span class="fui-cross-16"></span>
+                              </a>
+                          </td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+                </table>
+            {% else %}
+                <h2>Hey this looks a bit empty, go ahead and add some feeds!</h2>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

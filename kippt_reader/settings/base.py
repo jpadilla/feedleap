@@ -1,16 +1,17 @@
+import os
 """
 Django settings for kippt_reader project.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/{{ docs_version }}/topics/settings/
+https://docs.djangoproject.com/en/1.5/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
+https://docs.djangoproject.com/en/1.5/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SITE_ROOT = os.path.dirname(BASE_DIR)
+SITE_NAME = os.path.basename(BASE_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -42,6 +43,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'south',
     'gunicorn',
+    'widget_tweaks',
 
     'libs.djpubsubhubbub',
 
@@ -94,7 +96,24 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.normpath(os.path.join(SITE_ROOT, 'media'))
+
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = ''
+
+STATICFILES_DIRS = (
+    os.path.normpath(os.path.join(SITE_ROOT, 'static')),
+)
+
+# Templates
+
+TEMPLATE_DIRS = (
+    os.path.normpath(os.path.join(SITE_ROOT, 'templates')),
+)
+
 # Logging
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
@@ -103,6 +122,7 @@ LOGGING = {
 # Project specifics
 
 AUTH_USER_MODEL = 'auth.KipptUser'
+LOGIN_URL = '/auth/connect/'
 LOGIN_REDIRECT_URL = '/'
 
 AUTHENTICATION_BACKENDS = (

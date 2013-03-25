@@ -1,5 +1,72 @@
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
-</form>
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block body %}
+    {% if kipptuser %}
+    <div class="container">
+        {% include "navbar.html" %}
+        <div class="row">
+            <div class="span6">
+                <h1>Setup</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-wrapper palette-clouds">
+
+                        {% if form.errors %}
+                        <div class="control-group error">
+                            <p>{{ form.non_field_errors.0 }}</p>
+                        </div>
+                        {% endif %}
+
+                        <div class="control-group {% if form.list_id.errors %}error{% endif %}">
+                            <label for="{{ form.list_id.auto_id }}">{{ form.list_id.label }}</label>
+                            {{ form.list_id|add_class:"span5" }}
+                        </div>
+
+                        <div class="control-group">
+                            <input type="submit" class="btn btn-large btn-primary" value="Submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="login-wrapper">
+        <div class="login-screen">
+
+            <div class="login-icon">
+                <h4>Welcome to <small>Kippt Reader</small></h4>
+                <p>To get started you need to enter your Kippt credentials. We <strong>don't</strong> store your password. We use your credentials to authenticate to Kippt and interchange it with your API Token as stated <a href="https://kippt.com/developers/">here</a>.</p>
+            </div>
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="login-form palette-clouds">
+
+                    {% if form.errors %}
+                    <div class="control-group error">
+                        <p>{{ form.non_field_errors.0 }}</p>
+                    </div>
+                    {% endif %}
+
+                    <div class="control-group {% if form.username.errors %}error{% endif %}">
+                        {{ form.username|add_class:"login-field"|attr:"placeholder:Enter your Kippt username"}}
+                        <label class="login-field-icon fui-man-16" for="{{ form.username.auto_id }}"></label>
+                    </div>
+
+                    <div class="control-group {% if form.password.errors %}error{% endif %}">
+                        {{ form.password|add_class:"login-field"|attr:"placeholder:Enter your Kippt password"}}
+                        <label class="login-field-icon fui-lock-16" for="{{ form.password.auto_id }}"></label>
+                    </div>
+
+                    <input type="submit" class="btn btn-large btn-block btn-primary" value="Connect">
+                    <a class="login-link" href="#">Questions?</a>
+                    <p align="center" data-toggle="tooltip" data-placement="bottom" title="If you have any questions feel free to shoot me an email jose@jpadilla.com"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
