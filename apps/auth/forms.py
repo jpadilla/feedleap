@@ -34,7 +34,12 @@ class KipptUserConnectForm(forms.ModelForm):
         return self.cleaned_data
 
     def save(self, commit=True):
-        user, created = KipptUser.objects.get_or_create(**self.cleaned_data)
+        user, created = KipptUser.objects.get_or_create(
+            username=self.cleaned_data['username'],
+        )
+
+        user.api_token = self.cleaned_data['api_token']
+        user.save()
 
         if created:
             user.set_password(None)
