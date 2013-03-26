@@ -36,7 +36,7 @@ class FeedEntry(models.Model):
         verbose_name_plural = 'feed entries'
 
     def __unicode__(self):
-        return '{} - {}'.format(self.title, self.link)
+        return self.title
 
     def add_to_kipt(self):
         if not self.added_to_kippt:
