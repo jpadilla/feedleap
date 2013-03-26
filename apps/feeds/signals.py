@@ -11,14 +11,8 @@ def update_handler(sender, update, **kwargs):
 
     feeds = Feed.objects.filter(feed_url=sender.topic)
 
-    print 'Got an update'
-    print feeds
-
     for feed in feeds:
         for entry in update.entries:
-            print 'Creating a feed entry'
-            print entry
-
             feed_entry = FeedEntry.objects.create(
                 title=entry['title'],
                 summary=entry['summary'],

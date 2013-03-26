@@ -48,7 +48,7 @@ class FeedEntry(models.Model):
             else:
                 list_id = user.list_id
 
-            print kippt.clips.create(
+            kippt.clips.create(
                 self.link,
                 list_id,
                 title=self.title,
