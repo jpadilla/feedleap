@@ -13,13 +13,16 @@ def update_handler(sender, update, **kwargs):
 
     for feed in feeds:
         for entry in update.entries:
-            feed_entry = FeedEntry.objects.create(
-                title=entry['title'],
-                summary=entry['summary'],
+            feed_entry, created = FeedEntry.objects.get_or_create(
                 link=entry['link'],
-                feed=feed
+                feed=feed,
+                defaults={
+                    'title': entry['title'],
+                    'summary': entry['summary']
+                }
             )
 
-            feed_entry.add_to_kipt()
+            if created:
+                feed_entry.add_to_kipt()
 
 updated.connect(update_handler, dispatch_uid='superfeedr')
