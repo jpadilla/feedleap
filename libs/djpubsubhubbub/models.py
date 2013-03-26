@@ -47,7 +47,7 @@ class SubscriptionManager(models.Manager):
                 raise TypeError(
                     'callback cannot be None if there is not a reversible URL')
             else:
-                callback = 'http://%s%s' % (
+                callback = 'https://%s%s' % (
                     config.get_default_callback_host(topic, hub),
                     callback_path
                 )
