@@ -8,8 +8,8 @@ from django.core.urlresolvers import reverse
 from django.utils import unittest
 from django.test.client import Client
 
-from models import Subscription, SubscriptionManager
-from signals import pre_subscribe, verified, updated
+from djpubsubhubbub.models import Subscription, SubscriptionManager
+from djpubsubhubbub.signals import pre_subscribe, verified, updated
 
 class MockResponse(object):
     def __init__(self, status, data=None):

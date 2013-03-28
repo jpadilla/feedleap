@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from models import Subscription
+from djpubsubhubbub.models import Subscription
 
 admin.site.register(Subscription)

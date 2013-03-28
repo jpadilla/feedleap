@@ -10,8 +10,8 @@ from django.conf import settings
 from django.core.urlresolvers import reverse, NoReverseMatch
 from django.utils.timezone import now
 
-import signals
-from config import Config
+from djpubsubhubbub import signals
+from djpubsubhubbub.config import Config
 
 DEFAULT_LEASE_SECONDS = 2592000  # 30 days in seconds
 

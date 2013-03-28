@@ -1,6 +1,6 @@
 from django import forms
 
-from libs.kippt import Kippt
+from kippt import Kippt
 
 from .models import KipptUser
 

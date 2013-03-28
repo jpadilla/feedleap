@@ -2,7 +2,7 @@ from django import forms
 from django.conf import settings
 
 import feedparser
-from libs.djpubsubhubbub.models import Subscription
+from djpubsubhubbub.models import Subscription
 
 from .models import Feed
 

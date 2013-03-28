@@ -4,8 +4,8 @@
 
 This is a mirror of the original app (see ORIGINAL README below.)
 
-The small changes I made were just to integrate custom header
-support into the app. This is needed to interface with the
+The small changes I made were just to integrate custom header 
+support into the app. This is needed to interface with the 
 SuperFeedr.com hub.
 
 Updated to work cleanly with Django 1.5.

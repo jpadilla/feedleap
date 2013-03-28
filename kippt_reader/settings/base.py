@@ -1,4 +1,6 @@
 import os
+import site
+import sys
 """
 Django settings for kippt_reader project.
 
@@ -13,6 +15,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_ROOT = os.path.dirname(BASE_DIR)
 SITE_NAME = os.path.basename(BASE_DIR)
 
+prev_sys_path = list(sys.path)
+
+site.addsitedir(os.path.join(SITE_ROOT, 'libs'))
+site.addsitedir(os.path.join(SITE_ROOT, 'vendor'))
+
+# Move the new items to the front of sys.path.
+new_sys_path = []
+for item in list(sys.path):
+    if item not in prev_sys_path:
+        new_sys_path.append(item)
+        sys.path.remove(item)
+sys.path[:0] = new_sys_path
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/{{ docs_version }}/howto/deployment/checklist/
@@ -45,7 +59,7 @@ INSTALLED_APPS = (
     'gunicorn',
     'widget_tweaks',
 
-    'libs.djpubsubhubbub',
+    'djpubsubhubbub',
 
     'apps.auth',
     'apps.feeds',

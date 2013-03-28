@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from libs.kippt import Kippt
+from kippt import Kippt
 
 
 class KipptUser(AbstractUser):

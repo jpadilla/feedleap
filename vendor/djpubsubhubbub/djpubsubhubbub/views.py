@@ -1,13 +1,14 @@
 import urllib
 import feedparser
+from datetime import datetime
 
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.datastructures import MultiValueDictKeyError
 
-from models import Subscription, DEFAULT_LEASE_SECONDS
-from signals import verified, updated, subscription_needs_update
+from djpubsubhubbub.models import Subscription, DEFAULT_LEASE_SECONDS
+from djpubsubhubbub.signals import verified, updated, subscription_needs_update
 
 
 @csrf_exempt
@@ -33,7 +34,7 @@ def callback(request, pk):
                 verify_token=verify_token,
             )
         except Subscription.DoesNotExist:
-            # XXX Hack. Hubs may re-encode already encoded
+            # XXX Hack. Hubs may re-encode already encoded 
             # data sent during the initial subscription request.
             # Do one last "unquote" just to be safe:
             topic = urllib.unquote(topic)
@@ -68,7 +69,7 @@ def callback(request, pk):
         parsed = feedparser.parse(
             getattr(request, 'body', request.raw_post_data),
         )
-        if parsed.feed.links:  # single notification
+        if parsed.feed.links: # single notification
             hub_url = subscription.hub
             self_url = subscription.topic
             for link in parsed.feed.links:

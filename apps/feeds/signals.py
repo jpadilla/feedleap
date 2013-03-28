@@ -1,4 +1,4 @@
-from libs.djpubsubhubbub.signals import updated
+from djpubsubhubbub.signals import updated
 
 from .models import Feed, FeedEntry
 
