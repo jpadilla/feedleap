@@ -37,7 +37,7 @@ SECRET_KEY = '5wkx-h4q+php!%#w1+jj#p_$5!3-3651_7ssc0&f+t3+vx59-1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -108,17 +108,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/{{ docs_version }}/howto/static-files/
 
+STATIC_ROOT = os.path.normpath(os.path.join(SITE_ROOT, 'static'))
+
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.normpath(os.path.join(SITE_ROOT, 'media'))
 
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = ''
-
-STATICFILES_DIRS = (
-    os.path.normpath(os.path.join(SITE_ROOT, 'static')),
-)
+# STATICFILES_DIRS = (
+#     os.path.normpath(os.path.join(SITE_ROOT, 'static')),
+# )
 
 # Templates
 
