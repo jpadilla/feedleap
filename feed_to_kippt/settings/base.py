@@ -116,10 +116,6 @@ MEDIA_ROOT = os.path.normpath(os.path.join(SITE_ROOT, 'media'))
 
 MEDIA_URL = '/media/'
 
-# STATICFILES_DIRS = (
-#     os.path.normpath(os.path.join(SITE_ROOT, 'static')),
-# )
-
 # Templates
 
 TEMPLATE_DIRS = (
