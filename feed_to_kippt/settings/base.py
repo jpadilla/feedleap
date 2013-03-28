@@ -148,7 +148,7 @@ DOMAIN = os.getenv('DOMAIN')
 
 # SuperFeedr
 SUPERFEEDR_HUB = os.getenv('SUPERFEEDR_HUB')
-SUPERFEEDR_USER = os.getenv('SUPERFEEDR_USER')
+SUPERFEEDR_USER = os.getenv('SUPERFEEDR_USERNAME')
 SUPERFEEDR_PASS = os.getenv('SUPERFEEDR_PASSWORD')
 
 # djpubsubhubbub
