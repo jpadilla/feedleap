@@ -64,6 +64,8 @@ class SubscriptionManager(models.Manager):
         print response.status_code
         print response
         print callback
+        print headers
+        print hub
 
         if response.status_code not in [204, 202]:
             # 204 is sync verification
