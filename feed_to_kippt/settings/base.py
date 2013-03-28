@@ -2,7 +2,7 @@ import os
 import site
 import sys
 """
-Django settings for kippt_reader project.
+Django settings for feed_to_kippt project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.5/topics/settings/
@@ -76,9 +76,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.http.ConditionalGetMiddleware',
 )
 
-ROOT_URLCONF = 'kippt_reader.urls'
+ROOT_URLCONF = 'feed_to_kippt.urls'
 
-WSGI_APPLICATION = 'kippt_reader.wsgi.application'
+WSGI_APPLICATION = 'feed_to_kippt.wsgi.application'
 
 
 # Database
@@ -152,4 +152,4 @@ SUPERFEEDR_USER = 'jpadilla'
 SUPERFEEDR_PASS = 'superfeedrkipptreader'
 
 # djpubsubhubbub
-PUBSUBHUBBUB_CONFIG = 'kippt_reader.config.SubHubConfig'
+PUBSUBHUBBUB_CONFIG = 'feed_to_kippt.config.SubHubConfig'
