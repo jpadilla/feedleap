@@ -144,12 +144,12 @@ AUTHENTICATION_BACKENDS = (
     'apps.auth.backends.KipptUserBackend',
 )
 
-DOMAIN = 'kippt-reader.herokuapp.com'
+DOMAIN = os.getenv('DOMAIN')
 
 # SuperFeedr
-SUPERFEEDR_HUB = 'https://superfeedr.com/hubbub'
-SUPERFEEDR_USER = 'jpadilla'
-SUPERFEEDR_PASS = 'superfeedrkipptreader'
+SUPERFEEDR_HUB = os.getenv('SUPERFEEDR_HUB')
+SUPERFEEDR_USER = os.getenv('SUPERFEEDR_USER')
+SUPERFEEDR_PASS = os.getenv('SUPERFEEDR_PASSWORD')
 
 # djpubsubhubbub
 PUBSUBHUBBUB_CONFIG = 'feed_to_kippt.config.SubHubConfig'
