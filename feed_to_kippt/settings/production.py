@@ -19,7 +19,7 @@ DATABASES = {'default': dj_database_url.config()}
 
 SECRET_KEY = environ.get('SECRET_KEY')
 
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
