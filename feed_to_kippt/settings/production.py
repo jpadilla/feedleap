@@ -30,7 +30,7 @@ ALLOWED_HOSTS = [DOMAIN]
 
 STATIC_ROOT = os.path.normpath(os.path.join(SITE_ROOT, 'assets'))
 
-django-secure
+# django-secure
 SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 SECURE_HSTS_SECONDS = 15
