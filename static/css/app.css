@@ -6,10 +6,13 @@
     width: 400px;
     margin: 0 auto;
     min-height: 317px;
-    padding: 123px 199px 33px 199px;
+    padding: 75px 199px 33px 199px;
 }
 
-.login-icon {}
+.login-icon .logo {
+    display: block;
+    margin-bottom: 10px;
+}
 
 .login-icon > h4 {
     font-size: 17px;
