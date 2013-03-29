@@ -2,7 +2,7 @@ import os
 import site
 import sys
 """
-Django settings for feed_to_kippt project.
+Django settings for rss_to_kippt project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.5/topics/settings/
@@ -76,9 +76,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.http.ConditionalGetMiddleware',
 )
 
-ROOT_URLCONF = 'feed_to_kippt.urls'
+ROOT_URLCONF = 'rss_to_kippt.urls'
 
-WSGI_APPLICATION = 'feed_to_kippt.wsgi.application'
+WSGI_APPLICATION = 'rss_to_kippt.wsgi.application'
 
 
 # Database
@@ -183,4 +183,4 @@ SUPERFEEDR_USER = os.getenv('SUPERFEEDR_USERNAME')
 SUPERFEEDR_PASS = os.getenv('SUPERFEEDR_PASSWORD')
 
 # djpubsubhubbub
-PUBSUBHUBBUB_CONFIG = 'feed_to_kippt.config.SubHubConfig'
+PUBSUBHUBBUB_CONFIG = 'rss_to_kippt.config.SubHubConfig'
