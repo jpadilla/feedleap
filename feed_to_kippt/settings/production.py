@@ -28,7 +28,7 @@ ALLOWED_HOSTS = [DOMAIN]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/{{ docs_version }}/howto/static-files/
 
-STATIC_ROOT = os.path.normpath(os.path.join(SITE_ROOT, 'static')),
+STATIC_ROOT = os.path.normpath(os.path.join(SITE_ROOT, 'static'))
 
 STATICFILES_DIRS = ()
 
