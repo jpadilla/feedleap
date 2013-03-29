@@ -28,11 +28,9 @@ ALLOWED_HOSTS = [DOMAIN]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/{{ docs_version }}/howto/static-files/
 
-STATIC_ROOT = os.path.normpath(os.path.join(SITE_ROOT, 'static'))
+STATIC_ROOT = os.path.normpath(os.path.join(SITE_ROOT, 'assets'))
 
-STATICFILES_DIRS = ()
-
-# django-secure
+django-secure
 SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 SECURE_HSTS_SECONDS = 15
