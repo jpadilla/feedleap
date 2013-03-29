@@ -1,4 +1,4 @@
-from os import environ
+import os
 
 import dj_database_url
 
@@ -17,13 +17,20 @@ MIDDLEWARE_CLASSES = PRODUCTION_MIDDLEWARE_CLASSES + MIDDLEWARE_CLASSES
 
 DATABASES = {'default': dj_database_url.config()}
 
-SECRET_KEY = environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [DOMAIN]
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/{{ docs_version }}/howto/static-files/
+
+STATIC_ROOT = os.path.normpath(os.path.join(SITE_ROOT, 'static')),
+
+STATICFILES_DIRS = ()
 
 # django-secure
 SESSION_COOKIE_SECURE = True
