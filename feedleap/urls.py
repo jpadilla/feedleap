@@ -17,6 +17,10 @@ urlpatterns = patterns(
     url(r'^auth/', include('apps.auth.urls')),
     url(r'^feeds/', include('apps.feeds.urls')),
 
+    # Favicon
+    url(r'^favicon.ico/$',
+        RedirectView.as_view(url=settings.STATIC_URL + 'favicon.ico')),
+
     url(r'^github-btn.html/$',
         TemplateView.as_view(
             template_name='github-btn.html', content_type='text/html'),
