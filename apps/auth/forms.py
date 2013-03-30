@@ -16,7 +16,7 @@ class KipptUserConnectForm(forms.ModelForm):
 
         self.fields['username'].label = 'Kippt Username'
         self.fields['username'].help_text = ''
-        self.fields['password'].label = 'Kippt Password'
+        self.fields['password'].label = 'Kippt Password or API Token'
         self.fields['password'].widget = forms.PasswordInput()
 
     def clean(self):
@@ -27,7 +27,11 @@ class KipptUserConnectForm(forms.ModelForm):
         user = kippt.account()
 
         if 'message' in user:
-            raise forms.ValidationError(user['message'])
+            kippt = Kippt(username, api_token=password)
+            user = kippt.account()
+
+            if 'message' in user:
+                raise forms.ValidationError(user['message'])
 
         self.cleaned_data['api_token'] = user['api_token']
 

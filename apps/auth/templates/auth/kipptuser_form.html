@@ -41,7 +41,7 @@
                     <img src="{{ STATIC_URL }}images/logo.png" alt="">
                 </a>
                 <h4>Welcome to <small>Feedleap</small></h4>
-                <p>Feedleap lets you subscribe to your favorite RSS feeds and store new entries as Clips in any Kippt List you want. Clips are stored with a url, title, and a summary.</p>
+                <p>Feedleap(RSS feeds that leap into Kippt?) lets you subscribe to your favorite RSS feeds and store new entries as Clips in any Kippt List you want. Clips are stored with a url, title, and a summary.</p>
                 <p>To get started you need to enter your Kippt credentials. We <strong>don't</strong> store your password. We use your credentials to authenticate to Kippt and interchange it with your API Token as stated <a href="https://kippt.com/developers/">here</a>.</p>
             </div>
 
@@ -61,15 +61,20 @@
                     </div>
 
                     <div class="control-group {% if form.password.errors %}error{% endif %}">
-                        {{ form.password|add_class:"login-field"|attr:"placeholder:Enter your Kippt password"}}
+                        {{ form.password|add_class:"login-field"|attr:"placeholder:Enter your Kippt password or API Token"}}
                         <label class="login-field-icon fui-lock-16" for="{{ form.password.auto_id }}"></label>
                     </div>
 
                     <input type="submit" class="btn btn-large btn-block btn-primary" value="Connect">
-                    <a class="login-link" href="#">Questions?</a>
-                    <p align="center" data-toggle="tooltip" data-placement="bottom" title="If you have any questions feel free to shoot me an email jose@jpadilla.com"></p>
+                    <p class="about">Hacked together by <a href="http://jpadilla.com">José Padilla</a>.</p>
                 </div>
             </form>
+            <div class="social">
+                <iframe src="{% url 'github_btn' %}?user=jpadilla&repo=feedleap&type=fork&count=true"
+                allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                <iframe src="{% url 'github_btn' %}?user=jpadilla&repo=feedleap&type=watch&count=true"
+                allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+            </div>
         </div>
     </div>
     {% endif %}

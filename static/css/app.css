@@ -6,7 +6,11 @@
     width: 400px;
     margin: 0 auto;
     min-height: 317px;
-    padding: 75px 199px 33px 199px;
+    padding: 100px 200px 0 200px;
+}
+
+.login-icon {
+    margin-bottom: 20px;
 }
 
 .login-icon .logo {
@@ -44,10 +48,9 @@
 
 .login-form .login-field {
     font-size: 17px;
-    padding-bottom: 11px;
-    padding-top: 11px;
+    padding: 11px 36px 11px 0;
     text-indent: 3px;
-    width: 340px;
+    width: 314px;
     border-color: transparent;
 }
 
@@ -68,10 +71,14 @@
     -webkit-backface-visibility: hidden;
 }
 
-.login-link {
+.about {
     color: #7F8C8D;
-    display: block;
     font-size: 13px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.social {
     margin-top: 15px;
     text-align: center;
 }
