@@ -66,12 +66,10 @@ def callback(request, pk):
         return HttpResponse(challenge, content_type='text/plain')
     elif request.method == 'POST':
         subscription = get_object_or_404(Subscription, pk=pk)
-        print getattr(request, 'body', request.raw_post_data)
         parsed = feedparser.parse(
             getattr(request, 'body', request.raw_post_data),
         )
-        print parsed
-        if parsed.feed.links:  # single notification
+        if parsed.feed.links: # single notification
             hub_url = subscription.hub
             self_url = subscription.topic
             for link in parsed.feed.links:

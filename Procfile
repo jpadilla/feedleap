@@ -1,1 +1,1 @@
-web: python manage.py collectstatic --noinput --settings=rss_to_kippt.settings.production; python manage.py run_gunicorn -b "0.0.0.0:$PORT" -w 3 --settings=rss_to_kippt.settings.production
+web: python manage.py collectstatic --noinput --settings=feedleap.settings.production; python manage.py run_gunicorn -b "0.0.0.0:$PORT" -w 3 --settings=feedleap.settings.production

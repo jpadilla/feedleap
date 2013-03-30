@@ -13,7 +13,6 @@ def update_handler(sender, update, **kwargs):
 
     for feed in feeds:
         for entry in update.entries:
-            print entry
             feed_entry, created = FeedEntry.objects.get_or_create(
                 link=entry['link'],
                 feed=feed,

@@ -29,7 +29,7 @@ def read_env():
             os.environ.setdefault(key, val)
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "rss_to_kippt.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "feedleap.settings")
 
     from django.core.management import execute_from_command_line
 
