@@ -34,7 +34,7 @@ def callback(request, pk):
                 verify_token=verify_token,
             )
         except Subscription.DoesNotExist:
-            # XXX Hack. Hubs may re-encode already encoded 
+            # XXX Hack. Hubs may re-encode already encoded
             # data sent during the initial subscription request.
             # Do one last "unquote" just to be safe:
             topic = urllib.unquote(topic)
@@ -66,10 +66,12 @@ def callback(request, pk):
         return HttpResponse(challenge, content_type='text/plain')
     elif request.method == 'POST':
         subscription = get_object_or_404(Subscription, pk=pk)
+        print getattr(request, 'body', request.raw_post_data)
         parsed = feedparser.parse(
             getattr(request, 'body', request.raw_post_data),
         )
-        if parsed.feed.links: # single notification
+        print parsed
+        if parsed.feed.links:  # single notification
             hub_url = subscription.hub
             self_url = subscription.topic
             for link in parsed.feed.links:
