@@ -20,14 +20,14 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         for topic_url in args:
             if options.get('unsubscribe', False):
-                sub = Subscription.objects.subscribe(
+                sub = Subscription.objects.unsubscribe(
                     topic=topic_url,
                     hub=settings.SUPERFEEDR_HUB,
                 )
 
                 self.stdout.write('Successfully unsubscribed %s' % sub)
             else:
-                sub = Subscription.objects.unsubscribe(
+                sub = Subscription.objects.subscribe(
                     topic=topic_url,
                     hub=settings.SUPERFEEDR_HUB,
                 )
