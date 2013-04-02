@@ -1,6 +1,6 @@
 from django.views.generic import CreateView, UpdateView
 from django.contrib.auth import authenticate, login
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.shortcuts import redirect
 
 from braces.views import LoginRequiredMixin
@@ -12,6 +12,12 @@ from .forms import KipptUserConnectForm, KipptUserSetupForm
 class ConnectView(CreateView):
     model = KipptUser
     form_class = KipptUserConnectForm
+
+    def get_context_data(self, **kwargs):
+        context = super(ConnectView, self).get_context_data(**kwargs)
+        feeds_create = self.request.build_absolute_uri(reverse('feeds_create'))
+        context['subtome_url'] = '{}?feed={{feed}}&source=subtome'.format(feeds_create)
+        return context
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated():
