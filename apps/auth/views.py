@@ -32,9 +32,11 @@ class ConnectView(CreateView):
         if user is not None:
             login(self.request, user)
 
+        redirect_to = self.request.GET.get('next')
+
         if created:
             redirect_to = reverse_lazy('auth_setup')
-        else:
+        elif not redirect_to:
             redirect_to = reverse_lazy('feeds_list')
 
         return redirect(redirect_to)
