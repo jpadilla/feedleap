@@ -1,3 +1,4 @@
+import requests
 from djpubsubhubbub.signals import updated
 
 from .models import Feed, FeedEntry
@@ -13,8 +14,9 @@ def update_handler(sender, update, **kwargs):
 
     for feed in feeds:
         for entry in update.entries:
+            r = requests.get(entry['link'])
             feed_entry, created = FeedEntry.objects.get_or_create(
-                link=entry['link'],
+                link=r.url,
                 feed=feed,
                 defaults={
                     'title': entry['title'],
