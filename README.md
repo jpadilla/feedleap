@@ -40,7 +40,7 @@ Licensed under the MIT License.
 
 ## Thanks
 Thanks to [@jorde](https://github.com/jorde) and [@ksaa](https://github.com/ksaa) from
-[Kippt](http:om) for their awesome feedback, support and simple [API](https://kippt.com/developers/).
+[Kippt](https://kippt.com/) for their awesome feedback, support and simple [API](https://kippt.com/developers/).
 
 
 ## Issues
