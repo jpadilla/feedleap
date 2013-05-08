@@ -1,6 +1,3 @@
-import datetime
-
-from django.utils.timezone import utc
 from django.db import models
 from django.conf import settings
 
@@ -37,25 +34,3 @@ class FeedEntry(models.Model):
 
     def __unicode__(self):
         return self.title
-
-    def add_to_kipt(self):
-        if not self.added_to_kippt:
-            user = self.feed.created_by
-            kippt = user.kippt_client()
-
-            if self.feed.list_id:
-                list_id = self.feed.list_id
-            else:
-                list_id = user.list_id
-
-            kippt.clips.create(
-                self.link,
-                list_id,
-                title=self.title,
-                notes=self.summary
-            )
-
-            now = datetime.datetime.utcnow().replace(tzinfo=utc)
-            self.added_to_kippt = True
-            self.date_added_to_kippt = now
-            self.save()
