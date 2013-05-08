@@ -22,6 +22,8 @@ def update_handler(sender, update, **kwargs):
 
             clip = kippt.clips(params={'url': r.url})
 
+            print clip
+
             if clip['meta']['total_count'] == 0:
                 if feed.list_id:
                     list_id = feed.list_id
