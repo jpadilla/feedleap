@@ -67,13 +67,21 @@
 
                     <input type="submit" class="btn btn-large btn-block btn-primary" value="Connect">
                     <p class="about">Hacked together by <a href="http://jpadilla.com">José Padilla</a>.</p>
+
+                    <div class="social">
+                        <iframe src="{% url 'github_btn' %}?user=jpadilla&repo=feedleap&type=fork&count=true"
+                        allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                        <iframe src="{% url 'github_btn' %}?user=jpadilla&repo=feedleap&type=watch&count=true"
+                        allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+                    </div>
+
                 </div>
             </form>
-            <div class="social">
-                <iframe src="{% url 'github_btn' %}?user=jpadilla&repo=feedleap&type=fork&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
-                <iframe src="{% url 'github_btn' %}?user=jpadilla&repo=feedleap&type=watch&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+            <div class="powered-by">
+                <strong>Powered by</strong>
+                <a target="_blank" href="http://superfeedr.com/">
+                    <img src="{{ STATIC_URL }}images/superfeedr-logo.png">
+                </a>
             </div>
         </div>
     </div>

@@ -83,6 +83,20 @@
     text-align: center;
 }
 
+.powered-by {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.powered-by a {
+    display: block;
+    margin-top: 5px;
+}
+
+.powered-by img {
+    width: 100px;
+}
+
 .row {
     margin-top: 25px;
 }
@@ -124,3 +138,4 @@
 .form-wrapper .control-group.error p {
     color: #e74c3c;
 }
+

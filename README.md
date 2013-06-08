@@ -42,6 +42,10 @@ Licensed under the MIT License.
 Thanks to [@jorde](https://github.com/jorde) and [@ksaa](https://github.com/ksaa) from
 [Kippt](https://kippt.com/) for their awesome feedback, support and simple [API](https://kippt.com/developers/).
 
+Thanks to [Julien Genestoux](https://github.com/julien51) and everyone at Superfeedr for powering our official demo.
+
+![Powered by Superfeedr](https://feedleap.herokuapp.com/static/images/superfeedr-logo.png)
+
 
 ## Issues
 Please use the [Github issue tracker](https://github.com/jpadilla/feedleap/issues) for any bug reports or feature requests.
