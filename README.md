@@ -1,9 +1,9 @@
+**Update: I'm officially shutting down the hosted version of FeedLeap for a couple of reasons. It was currently giving too much problems, and with no time to pick this up, all subscriptions on Superfeedr have been deleted. So no new entries will be showing up on Kippt. Also, Kippt won't probably be receiving any attention after they announced their [Next Chapter](http://blog.kippt.com/next-chapter/). I'll turn off the app on July 15th to allow anyone to retrieve their subscriptions manually from their dashboard. Thanks to everyone who helped this project live until now, especially [Jori Lallo](https://github.com/jorilallo), [Karri Saarinen](https://github.com/ksaa) and [Julien Genestoux](https://github.com/julien51).**
+
 # FeedLeap: RSS feeds that leap into Kippt
 
 FeedLeap lets you subscribe to your favorite RSS feeds and store new entries as Clips
 in any Kippt List you want.  Clips are stored with a url, title, and a summary.
-
-You try out the official hosted one at [http://feedleap.com](http://feedleap.com).
 
 
 ## About
